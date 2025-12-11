@@ -1,0 +1,5 @@
+{
+  "name": "Lumina Interior AI",
+  "description": "An interactive room makeover app powered by Gemini. Upload a photo, generate styles, compare results, and chat with an AI design consultant.",
+  "requestFramePermissions": []
+}
