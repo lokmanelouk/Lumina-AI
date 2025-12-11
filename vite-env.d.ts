@@ -1,7 +1,9 @@
-// Augment the NodeJS namespace to include API_KEY in ProcessEnv.
-// This assumes 'process' is already declared (e.g. by @types/node), resolving the redeclaration error.
+// Removing vite/client reference as it is missing in the environment
+// Augmenting NodeJS.ProcessEnv to include API_KEY without redeclaring 'process'
+
 declare namespace NodeJS {
   interface ProcessEnv {
     API_KEY: string;
+    [key: string]: string | undefined;
   }
 }
