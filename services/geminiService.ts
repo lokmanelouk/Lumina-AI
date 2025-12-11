@@ -1,4 +1,4 @@
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 import { ChatMessage } from "../types";
 
 // Helper to remove the data URL prefix for API calls
@@ -42,7 +42,7 @@ export const generateReimaginedRoom = async (
     // Extract image from response
     for (const part of response.candidates?.[0]?.content?.parts || []) {
       if (part.inlineData) {
-        return `data:image/jpeg;base64,${part.inlineData.data}`;
+        return `data:${part.inlineData.mimeType || 'image/jpeg'};base64,${part.inlineData.data}`;
       }
     }
     throw new Error("No image generated.");
@@ -84,7 +84,7 @@ export const editRoomImage = async (
 
     for (const part of response.candidates?.[0]?.content?.parts || []) {
       if (part.inlineData) {
-        return `data:image/jpeg;base64,${part.inlineData.data}`;
+        return `data:${part.inlineData.mimeType || 'image/jpeg'};base64,${part.inlineData.data}`;
       }
     }
     throw new Error("No edited image generated.");

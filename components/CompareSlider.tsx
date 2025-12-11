@@ -22,7 +22,7 @@ export const CompareSlider: React.FC<CompareSliderProps> = ({ original, generate
   }, []);
 
   const onMouseDown = () => (isDragging.current = true);
-  const onMouseUp = () => (isDragging.current = false);
+  // Unused local handler removed. Global handler is in useEffect.
   const onMouseMove = (e: React.MouseEvent) => {
     if (isDragging.current) handleMove(e.clientX);
   };

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Upload, Camera, Wand2, RotateCcw, Image as ImageIcon, Sparkles, Loader2 } from 'lucide-react';
 import { CompareSlider } from './components/CompareSlider';
 import { ChatInterface } from './components/ChatInterface';
@@ -79,7 +79,8 @@ const App: React.FC = () => {
       };
 
       setGeneratedImages(prev => [...prev, newImage]);
-      setSelectedImageIndex(prev => generatedImages.length); // Select the new one (prev length is now last index)
+      // Update index to the newly added image (length of array before this update was length-1, so new index is old length)
+      setSelectedImageIndex(generatedImages.length); 
     } catch (err) {
       setErrorMsg("Failed to generate design. Please try again.");
     } finally {
@@ -134,7 +135,7 @@ const App: React.FC = () => {
         };
 
         setGeneratedImages(prev => [...prev, newImage]);
-        setSelectedImageIndex(prev => generatedImages.length); // Select new
+        setSelectedImageIndex(generatedImages.length); // Select new
         
         // Confirmation message
         const doneMsg: ChatMessage = {
